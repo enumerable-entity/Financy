@@ -21,7 +21,7 @@ public record UserService(UserRepository userRepository,
     public UserService {
     }
 
-    public User registerUser(UserRegistrationRequest requestDto, HttpServletRequest request) {
+    public void registerUser(UserRegistrationRequest requestDto, HttpServletRequest request) {
         if (checkUserExist(requestDto.getEmail())) {
             throw new UserAlreadyExistException("User with this email already exist");
         }
@@ -32,9 +32,9 @@ public record UserService(UserRepository userRepository,
         newUser.setRole(Role.USER);
         newUser.setRegistredAt(LocalDate.now());
         newUser.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        User persistedUser = userRepository.save(newUser);
+        userRepository.save(newUser);
         authenticateAfterRegistration(request, requestDto.getEmail(), requestDto.getPassword());
-        return persistedUser;
+
     }
 
 

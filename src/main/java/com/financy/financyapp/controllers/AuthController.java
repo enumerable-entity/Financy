@@ -1,6 +1,7 @@
 package com.financy.financyapp.controllers;
 
 import com.financy.financyapp.models.pojo.UserRegistrationRequest;
+import com.financy.financyapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,12 +18,12 @@ import javax.validation.Valid;
 @RequestMapping(path = "/auth")
 public class AuthController {
 
-    //UserService userService;
+    UserService userService;
 
-//    @Autowired
-//    public AuthController (UserService userService){
-//        this.userService=userService;
-//    }
+    @Autowired
+    public AuthController (UserService userService){
+        this.userService=userService;
+    }
 
     @GetMapping("/login")
     String getLoginPage(){
@@ -37,10 +38,7 @@ public class AuthController {
     }
     @PostMapping(path = "/register")
     String registerNewUser(@Valid @ModelAttribute UserRegistrationRequest user, HttpServletRequest httpServletRequest, BindingResult bindingResult){
-
-       // userService.register(user, httpServletRequest);
-
+        userService.registerUser(user, httpServletRequest);
         return "redirect:/";
     }
-
 }
