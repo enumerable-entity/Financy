@@ -1,0 +1,2 @@
+INSERT INTO USERS (email, first_name, last_name, password, registred_at, role ) VALUES
+    ('admin@m.c', 'toni', 'stark', '$2y$10$RwvNmKFAnmWnbM1rX9X8T.QzNlGsAGiUCVOgXNQpJIPx4ZWrPMNF6','2021-12-01',1 );
