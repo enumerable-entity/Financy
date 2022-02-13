@@ -18,7 +18,7 @@ public class Category {
     @Column(nullable = false)
     private Type type;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

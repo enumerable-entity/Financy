@@ -1,0 +1,230 @@
+
+
+<!-- Add new transaction modal window -->
+
+<div class="modal fade" id="AddTransModal" tabindex="-1" aria-labelledby="AddTransModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddTransModalLabel">Add new transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/transactions/add" method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="davaToday" class="form-label">Select transaction date</label>
+                        <input type="date" class="form-control" name="date" id="davaToday" required>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleAmount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="exampleAmount" name="amount" value="0" min="0" step="0.1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="groupSelect" class="form-label">Category</label>
+                        <select class="form-select" aria-label="Default select example" id="groupSelect" name="category" required>
+                            <option selected disabled value="">Select category</option>
+                            <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}">categotyList</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="RadioInTr" value="INCOMING" required>
+                            <label class="form-check-label" for="RadioInTr">
+                                Incoming transaction
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="RadioOutTr" value="OUTGOING" required>
+                            <label class="form-check-label" for="RadioOutTr">
+                                Outgoing transaction
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete transaction modal window -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete transaction ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a id = "deleteButton" href="/transactions/delete/" role="button" class="btn btn-danger"  onclick="delete_tr()">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit transaction modal window -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/transactions/edit/" method="post" id="editForm">
+                    <div class="mb-3">
+                        <label for="input_title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="input_title" aria-describedby="emailHelp" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="davaToday" class="form-label">Select transaction date</label>
+                        <input type="date" class="form-control" name="date" id="date" required>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="AmountToEdit" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="AmountToEdit" name="amount" value="0" min="0" step="0.1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="EditGroupSelect" class="form-label">Category</label>
+                        <select class="form-select" aria-label="Default select example" id="EditGroupSelect" name="category" required>
+                            <option selected disabled value="">Select category</option>
+                            <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}">categotyList</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="EditRadioInTr" value="INCOMING">
+                            <label class="form-check-label" for="EditRadioInTr">
+                                Incoming transaction
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="EditRadioOutTr" value="OUTGOING">
+                            <label class="form-check-label" for="EditRadioOutTr">
+                                Outgoing transaction
+                            </label>
+                        </div>
+                    </div>
+                    <button  class="btn btn-primary" onclick="edit_tr()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar menu -->
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions/all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                    All transactions
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions/incoming">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                    </svg>
+                    Incoming transactions
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions/outgoing">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                    </svg>
+                    Outgoing transactions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/categories/all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                    </svg>
+                    Category management
+                </a>
+            </li>
+            <li class="nav-item">
+                <div style="margin: 4px 15px">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary ml-5" data-bs-toggle="modal" data-bs-target="#AddTransModal">
+                        Add new transaction
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+<!-- Header -->
+<header id = "header" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow d-flex flex-row">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">FINANCY</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <form class="form-control form-control-dark w-100 form-inline" action="/transactions/search" method="get" style="padding: 0">
+        <input class="form-control form-control-dark w-100" type="text" id="search" name="title" placeholder="Search transaction by title" aria-label="Search" >
+    </form>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#" th:text ="${#authentication.name}">UserName</a>
+        </div>
+    </div>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="/logout">Sign out</a>
+        </div>
+    </div>
+</header>
+
+<!-- JavaScript -->
+<th:block id="commonScripts">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="../res/main.js"></script>
+    <script>document.getElementById('davaToday').valueAsDate = new Date();</script>
+</th:block>
+
+<!-- Styles -->
+<th:block id="commonStyles">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon.ico">
+    <link th:href="@{/res/custom.css}" rel="stylesheet">
+    <link th:href="@{/res/dashboard.css}" rel="stylesheet">
+    <meta name="theme-color" content="#7952b3">
+</th:block>
