@@ -1,6 +1,6 @@
 package com.financy.financyapp.controllers;
 
-import com.financy.financyapp.models.pojo.UserRegistrationRequest;
+import com.financy.financyapp.models.dto.UserRegistrationRequest;
 import com.financy.financyapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @RequestMapping(path = "/auth")
 public class AuthController {
 
-    UserService userService;
+    private final UserService userService;
 
     @Autowired
     public AuthController (UserService userService){
