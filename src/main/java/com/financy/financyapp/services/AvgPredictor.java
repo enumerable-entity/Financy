@@ -4,11 +4,11 @@ import com.financy.financyapp.emums.Type;
 import com.financy.financyapp.models.User;
 import com.financy.financyapp.models.dto.PredictorData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-@Component
+@Service
 public class AvgPredictor implements Predictor{
 
     private final TransactionRepository transactionRepository;
