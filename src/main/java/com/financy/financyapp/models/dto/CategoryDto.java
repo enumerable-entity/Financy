@@ -1,6 +1,6 @@
 package com.financy.financyapp.models.dto;
 
-import com.financy.financyapp.emums.Type;
+import com.financy.financyapp.enums.Type;
 
 
 import javax.validation.constraints.NotBlank;

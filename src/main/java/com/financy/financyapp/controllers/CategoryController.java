@@ -71,6 +71,7 @@ public class CategoryController {
     }
 
     @GetMapping(path = "/delete/{categoryId}")
+
     private String deleteCategory (@PathVariable Long categoryId, HttpServletRequest httpRequest, Principal principal){
         Category catToDelete = categoryRepository.findById(categoryId).orElseThrow(NoSuchElementException::new);
         if (catToDelete.getUser().getEmail().equals(principal.getName()) ) {

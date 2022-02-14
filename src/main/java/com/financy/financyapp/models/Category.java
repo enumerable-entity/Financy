@@ -1,6 +1,6 @@
 package com.financy.financyapp.models;
 
-import com.financy.financyapp.emums.Type;
+import com.financy.financyapp.enums.Type;
 
 import javax.persistence.*;
 
@@ -18,7 +18,7 @@ public class Category {
     @Column(nullable = false)
     private Type type;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -62,4 +62,5 @@ public class Category {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

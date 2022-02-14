@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>All categories</title>
 
-    <th:block th:replace="~{fragmets :: #commonStyles}">Styles here </th:block>
+    <th:block th:replace="~{fragments :: #commonStyles}">Styles here </th:block>
 
     <style type="text/css">/* Chart.js */
     @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
 <body data-new-gr-c-s-check-loaded="8.890.0" data-gr-ext-installed="">
 
 <!-- Header-->
-<div th:replace="~{fragmets :: #header}">Header here </div>
+<div th:replace="~{fragments :: #header}">Header here </div>
 <!--Header-->
 
 <div class="container-fluid">
     <div class="row">
 
         <!-- Sidebar menu-->
-        <div th:replace="~{fragmets :: #sidebarMenu}">Sidebar menu here </div>
+        <div th:replace="~{fragments :: #sidebarMenu}">Sidebar menu here </div>
         <!-- Sidebar menu-->
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
 
             <!-- Add new transaction modal window-->
-            <div th:replace="~{fragmets :: #AddTransModal}">Add new transaction modal window here </div>
+            <div th:replace="~{fragments :: #AddTransModal}">Add new transaction modal window here </div>
             <!-- Add new transaction modal window-->
 
             <!-- Add new category modal window -->
@@ -170,7 +170,7 @@
 
 
 <!--JavaScript-->
-<div th:replace="~{fragmets :: #commonScripts}">Edit transaction modal window here </div>
+<div th:replace="~{fragments :: #commonScripts}">Edit transaction modal window here </div>
 <!--JavaScript-->
 </body>
 </html>

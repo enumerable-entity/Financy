@@ -1,4 +1,4 @@
-package com.financy.financyapp.emums;
+package com.financy.financyapp.enums;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

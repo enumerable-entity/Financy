@@ -1,8 +1,10 @@
 package com.financy.financyapp.services;
 
-import com.financy.financyapp.emums.Type;
+import com.financy.financyapp.enums.Type;
+import com.financy.financyapp.models.Transaction;
 import com.financy.financyapp.models.User;
 import com.financy.financyapp.models.dto.PredictorData;
+import com.financy.financyapp.repositories.TransactionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,11 @@ import java.time.LocalDate;
 @Service
 public class AvgPredictor implements Predictor{
 
-    private final TransactionRepository transactionRepository;
+    private final TransactionsRepository transactionsRepository;
 
     @Autowired
-    public AvgPredictor(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
+    public AvgPredictor(TransactionsRepository transactionsRepository) {
+        this.transactionsRepository = transactionsRepository;
     }
 
     @Override

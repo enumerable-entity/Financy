@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-cbscriptallow="true" lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search results</title>
+
+    <div th:replace="~{fragments :: #commonStyles}">Styles here </div>
+
+
+    <style type="text/css">/* Chart.js */
+    @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
+<body data-new-gr-c-s-check-loaded="8.890.0" data-gr-ext-installed="">
+
+<!-- Header-->
+<div th:replace="~{fragments :: #header}">Header here </div>
+<!--Header-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar menu-->
+        <div th:replace="~{fragments :: #sidebarMenu}">Sidebar menu here </div>
+        <!-- Sidebar menu-->
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+            </div>
+
+            <!-- Add new transaction modal window-->
+            <div th:replace="~{fragments :: #AddTransModal}">Add new transaction modal window here </div>
+            <!-- Add new transaction modal window-->
+
+            <!--  Delete transaction modal  window-->
+            <div th:replace="~{fragments :: #deleteModal}">Add new transaction modal window here </div>
+            <!--  Delete transaction modal  window-->
+
+            <!--  Edit transaction modal  window-->
+            <div th:replace="~{fragments :: #editModal}">Edit transaction modal window here </div>
+            <!--  Edit transaction modal  window-->
+
+            <h2>Found transactions : </h2>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">DATE</th>
+                        <th scope="col">TITLE</th>
+                        <th scope="col">AMOUNT</th>
+                        <th scope="col">TYPE</th>
+                        <th scope="col">CATEGORY</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="trans: ${transactionsList}" th:id="${trans.id}" th:attr="class=${trans.type}">
+                        <td th:text="${#temporals.format(trans.date, 'dd/MM/yyyy')}">DATE</td>
+                        <td th:text="${trans.title}">Oranges</td>
+                        <td th:text="${#numbers.formatDecimal(trans.amount,1,1, 'POINT')}"></td>
+                        <td th:text="${trans.type}">Oranges</td>
+                        <td th:text="${trans.category.title}" th:class="${trans.category.id}">Oranges</td>
+                        <td>
+                            <button  type="button" class="btn btn-link px-10 py-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="prepare_id_edit_tr(this.closest('tr').id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="btn btn-link px-10 py-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="prepare_id_to_delete(this.closest('tr').id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<!--JavaScript-->
+<div th:replace="~{fragments :: #commonScripts}">Edit transaction modal window here </div>
+<!--JavaScript-->
+</body>
+</html>
