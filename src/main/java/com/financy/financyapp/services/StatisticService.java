@@ -1,19 +1,20 @@
 package com.financy.financyapp.services;
 
-import com.financy.financyapp.emums.Type;
+import com.financy.financyapp.enums.Type;
+import com.financy.financyapp.models.Transaction;
 import com.financy.financyapp.models.User;
 import com.financy.financyapp.models.dto.ChartData;
 import com.financy.financyapp.models.dto.StatisticData;
+import com.financy.financyapp.repositories.TransactionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 @Service
 public class StatisticService {
 
-    private final TransactionRepository transactionsRepository;
+    private final TransactionsRepository transactionsRepository;
 
     @Autowired
     public StatisticService(TransactionsRepository transactionsRepository) {
