@@ -100,4 +100,13 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub enumerable-entity Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/enumerable-entity/financy</url>
+        </repository>
+    </distributionManagement>
+
+
 </project>
