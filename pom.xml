@@ -15,7 +15,7 @@
 
     <groupId>org.financy</groupId>
     <artifactId>financy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <name>FinancyApp</name>
     <description>Web application for home finances management</description>
 
@@ -99,5 +99,14 @@
 
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub enumerable-entity Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/enumerable-entity/financy</url>
+        </repository>
+    </distributionManagement>
+
 
 </project>
