@@ -26,7 +26,7 @@ public class StatisticService {
                 calcLastMonthTotalIncomesAmount(user),
                 calcLastMonthTotalExpensesAmount(user),
                 calcLastSixMonthTotalIncomesAmount(user),
-                calcLastSixMonthTotalExpensesAmount(user)
+                calcLastSixMonthTotalExpensesAmount(user));
 
     }
 
@@ -59,7 +59,6 @@ public class StatisticService {
                 .sum();
     }
 
-
     private double calcLastWeekTotalExpensesAmount(User user) {
         return transactionsRepository
                 .findAllByDateBetweenAndTypeAndUser(LocalDate.now().minusDays(7), LocalDate.now(),Type.OUTGOING, user)
@@ -68,7 +67,6 @@ public class StatisticService {
                 .sum();
     }
 
-
     private double calcLastMonthTotalIncomesAmount(User user) {
         return transactionsRepository
                 .findAllByDateBetweenAndTypeAndUser(LocalDate.now().minusMonths(1), LocalDate.now(),Type.INCOMING, user)
@@ -76,7 +74,6 @@ public class StatisticService {
                 .mapToDouble(Transaction::getAmount)
                 .sum();
     }
-
 
     private double calcLastMonthTotalExpensesAmount(User user) {
         return transactionsRepository
@@ -93,7 +90,6 @@ public class StatisticService {
                 .mapToDouble(Transaction::getAmount)
                 .sum();
     }
-
 
     private double calcLastSixMonthTotalExpensesAmount(User user) {
         return transactionsRepository
