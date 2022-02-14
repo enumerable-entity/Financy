@@ -1,6 +1,8 @@
 package com.financy.financyapp.models;
 
 import com.financy.financyapp.enums.Type;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -17,6 +19,12 @@ public class Transaction {
     private String title;
 
     @Column(nullable = false)
+    private double amount;
+
+    @Column(nullable = false)
+    private LocalDate date;
+
+    @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Type type;
 
@@ -27,12 +35,6 @@ public class Transaction {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @Column(nullable = false)
-    private double amount;
-
-    @Column(nullable = false)
-    private LocalDate date;
 
     public Transaction(){};
 
