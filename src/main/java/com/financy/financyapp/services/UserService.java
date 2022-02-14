@@ -1,9 +1,9 @@
 package com.financy.financyapp.services;
 
-import com.financy.financyapp.emums.Role;
+import com.financy.financyapp.enums.Role;
 import com.financy.financyapp.exceprions.UserAlreadyExistException;
 import com.financy.financyapp.models.User;
-import com.financy.financyapp.models.pojo.UserRegistrationRequest;
+import com.financy.financyapp.models.dto.UserRegistrationRequest;
 import com.financy.financyapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

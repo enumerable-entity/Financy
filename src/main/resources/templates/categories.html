@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html data-cbscriptallow="true" lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All categories</title>
+
+    <th:block th:replace="~{fragments :: #commonStyles}">Styles here </th:block>
+
+    <style type="text/css">/* Chart.js */
+    @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
+<body data-new-gr-c-s-check-loaded="8.890.0" data-gr-ext-installed="">
+
+<!-- Header-->
+<div th:replace="~{fragments :: #header}">Header here </div>
+<!--Header-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar menu-->
+        <div th:replace="~{fragments :: #sidebarMenu}">Sidebar menu here </div>
+        <!-- Sidebar menu-->
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+
+            <!-- Add new transaction modal window-->
+            <div th:replace="~{fragments :: #AddTransModal}">Add new transaction modal window here </div>
+            <!-- Add new transaction modal window-->
+
+            <!-- Add new category modal window -->
+            <div class="modal fade" id="newCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add new category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/categories/add" method="post" name="addNewCat">
+                                <div class="mb-3">
+                                    <label for="AddTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="AddTitle" aria-describedby="emailHelp" name="title" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="AddRadioInTr" value="INCOMING" required>
+                                        <label class="form-check-label" for="RadioInTr">
+                                            For incoming transactions
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="AddRadioOutTr" value="OUTGOING" required>
+                                        <label class="form-check-label" for="RadioOutTr">
+                                            For outgoing transactions
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Add new category modal window -->
+
+            <!-- Delete category modal window -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete category ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a id = "deleteButton" href="/categories/delete/" role="button" class="btn btn-danger" onclick="delete_tr()">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit category modal window -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/categories/edit/" method="post" id="editCatForm">
+                                <div class="mb-3">
+                                    <label for="exampleInputTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" name="title" style="text-transform: uppercase" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="RadioInTr" value="INCOMING" required>
+                                        <label class="form-check-label" for="RadioInTr">
+                                            For incoming transactions
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type" id="RadioOutTr" value="OUTGOING" required>
+                                        <label class="form-check-label" for="RadioOutTr">
+                                            For outgoing transactions
+                                        </label>
+                                    </div>
+                                </div>
+                                <button  class="btn btn-primary" onclick="edit_cat()">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- CategoryModal -->
+
+            <div class="row">
+                <div class="col-md-10">
+                    <h2>All categories </h2>
+                </div>
+                <div class="col-md-2 pt-2">
+                    <button type="button" class="btn btn-primary ml-5 col-12" data-bs-toggle="modal" data-bs-target="#newCategoryModal">
+                        Add new category
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col-2">TITLE</th>
+                        <th scope="col" class="col-2">TYPE</th>
+                        <th scope="col" class="col-2">ACTIONS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cat: ${categoryList}" th:id="${cat.id}" th:attr="class=${cat.type}">
+                        <td class="col-2" th:text="${cat.title}"></td>
+                        <td class="col-2" th:text="${cat.type}"></td>
+                        <td>
+                            <button  type="button" class="btn btn-link px-10 py-0" data-bs-toggle="modal" data-bs-target="#editModal" onclick="prepare_id_edit_cat(this.closest('tr').id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="btn btn-link px-10 py-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="prepare_id_to_delete(this.closest('tr').id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+
+<!--JavaScript-->
+<div th:replace="~{fragments :: #commonScripts}">Edit transaction modal window here </div>
+<!--JavaScript-->
+</body>
+</html>

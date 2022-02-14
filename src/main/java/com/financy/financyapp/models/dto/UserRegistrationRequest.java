@@ -1,4 +1,6 @@
-package com.financy.financyapp.models.pojo;
+package com.financy.financyapp.models.dto;
+
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

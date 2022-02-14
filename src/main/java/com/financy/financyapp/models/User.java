@@ -1,6 +1,6 @@
 package com.financy.financyapp.models;
 
-import com.financy.financyapp.emums.Role;
+import com.financy.financyapp.enums.Role;
 
 import javax.persistence.*;
 import java.time.LocalDate;
