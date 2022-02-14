@@ -1,4 +1,4 @@
-package com.financy.financyapp.emums;
+package com.financy.financyapp.enums;
 
 public enum Permission {
     READ("read"), WRITE("write");

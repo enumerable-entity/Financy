@@ -1,6 +1,6 @@
 package com.financy.financyapp.models;
 
-import com.financy.financyapp.emums.Type;
+import com.financy.financyapp.enums.Type;
 
 import javax.persistence.*;
 

@@ -1,8 +1,10 @@
 package com.financy.financyapp.services;
 
-import com.financy.financyapp.emums.Type;
+import com.financy.financyapp.enums.Type;
+import com.financy.financyapp.models.Transaction;
 import com.financy.financyapp.models.User;
 import com.financy.financyapp.models.dto.PredictorData;
+import com.financy.financyapp.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
