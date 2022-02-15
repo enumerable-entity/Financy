@@ -12,13 +12,18 @@ import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Service
-public record UserService(UserRepository userRepository,
-                          PasswordEncoder passwordEncoder) {
+public final class UserService {
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public UserService {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void registerUser(UserRegistrationRequest requestDto, HttpServletRequest request) {
