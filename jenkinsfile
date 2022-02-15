@@ -7,8 +7,9 @@ pipeline{
         }
         stages{
             stage("Compiling&Packaging"){
+                steps {
                 dir ('target') { sh 'rm *.jar'}
-                steps { sh 'mvn package -Dmaven.test.skip=true'}
+                 sh 'mvn package -Dmaven.test.skip=true'}
             }
             stage("Delivering artifact to AWS"){
                 steps {
