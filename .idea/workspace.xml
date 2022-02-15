@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66703e3b-43b2-429f-bf35-d4daf0f4ef80" name="Changes" comment="IDE configs save">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+    <list default="true" id="66703e3b-43b2-429f-bf35-d4daf0f4ef80" name="Changes" comment="Release version 1.0.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -67,7 +71,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FinancyApplication">
+  <component name="RunManager" selected="Spring Boot.FinancyApplication (1)">
     <configuration name="FinancyApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="financy" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.financy.financyapp.FinancyApplication" />
@@ -93,6 +97,7 @@
       <updated>1644847308724</updated>
       <workItem from="1644847314155" duration="721000" />
       <workItem from="1644852263374" duration="1825000" />
+      <workItem from="1644910761710" duration="3734000" />
     </task>
     <servers />
   </component>
@@ -104,10 +109,41 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="develop" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Release version 1.0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Release version 1.0.0" />
   </component>
 </project>

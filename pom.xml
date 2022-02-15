@@ -15,7 +15,7 @@
 
     <groupId>org.financy</groupId>
     <artifactId>financy</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>FinancyApp</name>
     <description>Web application for home finances management</description>
 
