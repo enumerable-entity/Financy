@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66703e3b-43b2-429f-bf35-d4daf0f4ef80" name="Changes" comment="Release version 1.0.0">
+    <list default="true" id="66703e3b-43b2-429f-bf35-d4daf0f4ef80" name="Changes" comment="Version of artifact added to login page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/jenkinsfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FinancyApplication (1)">
+  <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="FinancyApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="financy" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.financy.financyapp.FinancyApplication" />
@@ -86,6 +84,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -97,8 +109,17 @@
       <updated>1644847308724</updated>
       <workItem from="1644847314155" duration="721000" />
       <workItem from="1644852263374" duration="1825000" />
-      <workItem from="1644910761710" duration="3734000" />
+      <workItem from="1644910761710" duration="6427000" />
+      <workItem from="1644919245746" duration="290000" />
     </task>
+    <task id="LOCAL-00001" summary="Version of artifact added to login page">
+      <created>1644914915648</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644914915648</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +165,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Release version 1.0.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Release version 1.0.0" />
+    <MESSAGE value="Version of artifact added to login page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version of artifact added to login page" />
   </component>
 </project>

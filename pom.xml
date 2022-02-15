@@ -20,9 +20,9 @@
     <description>Web application for home finances management</description>
 
     <properties>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -96,7 +96,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jlink-plugin</artifactId>
+                    <version>3.1.0</version>
+                <configuration>
+                    <!-- configuration elements goes here -->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -107,6 +114,5 @@
             <url>https://maven.pkg.github.com/enumerable-entity/financy</url>
         </repository>
     </distributionManagement>
-
 
 </project>
