@@ -13,7 +13,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.financy</groupId>
+    <groupId>link.enumerable-entity</groupId>
     <artifactId>financy</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <name>FinancyApp</name>
