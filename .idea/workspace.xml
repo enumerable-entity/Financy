@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66703e3b-43b2-429f-bf35-d4daf0f4ef80" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="66703e3b-43b2-429f-bf35-d4daf0f4ef80" name="Changes" comment="jenkinsfile update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/enums/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/enums/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/services/Predictor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/FinancyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/FinancyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/controllers/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/controllers/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/controllers/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/controllers/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/enums/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/enums/Permission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/enums/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/enums/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/exceprions/UserAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/exceprions/UserAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/exceprions/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/exceprions/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/CategoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/CategoryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/ChartData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/ChartData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/PredictorData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/PredictorData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/StatisticData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/StatisticData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/TransactionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/TransactionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/UserRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/UserRegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/dto/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/dto/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/models/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/models/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/repositories/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/repositories/TransactionsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/repositories/TransactionsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/repositories/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/repositories/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/security/SecurityUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/security/SecurityUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/security/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/security/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/services/AvgPredictor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/services/AvgPredictor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/services/Predictor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/services/StatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/services/StatisticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/financy/financyapp/services/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/link/enumerableentity/financy/services/package-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,15 +60,29 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="jenkinsfile update" />
+        <option name="rewordedMessage" value="jenkinsfile update" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="e6332498f6f264d012f2ee3d0b96c93830de9458" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
@@ -44,14 +97,27 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectId" id="256V1Z6usprAh1sg0qrjFSoRGpw" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -68,13 +134,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FinancyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="Financy" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.financy.financyapp.FinancyApplication" />
+    <configuration name="FinancyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="financy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="link.enumerableentity.financy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="link.enumerableentity.financy.FinancyApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="buildOnly" value="true" />
+          <option name="containerName" value="" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.FinancyApplication" />
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -85,7 +173,54 @@
       <option name="presentableId" value="Default" />
       <updated>1644847308724</updated>
       <workItem from="1644847314155" duration="721000" />
+      <workItem from="1644852263374" duration="1825000" />
+      <workItem from="1644910761710" duration="6427000" />
+      <workItem from="1644919245746" duration="1765000" />
+      <workItem from="1644921526668" duration="3437000" />
     </task>
+    <task id="LOCAL-00001" summary="Version of artifact added to login page">
+      <created>1644914915648</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644914915648</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Jenkisfile update">
+      <created>1644919600494</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1644919600494</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Jenkisfile update">
+      <created>1644919931289</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1644919931289</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Downgrade to version 11">
+      <created>1644920143405</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644920143405</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Dockerfile update">
+      <created>1644924243859</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644924243859</updated>
+    </task>
+    <task id="LOCAL-00006" summary="jenkinsfile update">
+      <created>1644926919668</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1644926919668</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,10 +231,46 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="develop" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Release version 1.0.0" />
+    <MESSAGE value="Version of artifact added to login page" />
+    <MESSAGE value="Jenkisfile update" />
+    <MESSAGE value="Downgrade to version 11" />
+    <MESSAGE value="Dockerfile update" />
+    <MESSAGE value="jenkinsfile update" />
+    <option name="LAST_COMMIT_MESSAGE" value="jenkinsfile update" />
   </component>
 </project>

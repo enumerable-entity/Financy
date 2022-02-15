@@ -7,12 +7,14 @@ pipeline{
         }
         stages{
             stage("Compiling&Packaging"){
-                steps { sh 'mvn package -Dmaven.test.skip=true'}
+                steps {
+                dir ('target') { sh 'rm *.jar'}
+                 sh 'mvn package -Dmaven.test.skip=true'}
             }
             stage("Delivering artifact to AWS"){
                 steps {
                     echo 'Delivering artifact to remote server...'
-                    dir ('target') { sh 'scp financy-0.0.1-SNAPSHOT.jar ubuntu@enumerable-entity.link:/home/ubuntu/app' }
+                    dir ('target') { sh 'scp *.jar ubuntu@enumerable-entity.link:/home/ubuntu/app' }
                 }
             }
             stage("Deploying artifact"){
