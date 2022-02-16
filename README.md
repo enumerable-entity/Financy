@@ -16,6 +16,25 @@ ___
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ___
+## Used Java technologies
+
++ ### Java 11 (Amazon Corretto 11.0.13 JDK)
++ ### SpringBoot v2.6.0
+  + #### starter-web
+  + #### starter-data-jpa
+  + #### starter-thymeleaf
+  + #### starter-security
+  + #### starter-test
+  + #### devtools
++ ### Spring Framework v5.3.13 
++ ### Thymeleaf v3.0.12
++ ### Hibernate v5.6.1.Final
++ ### H2 in-memory database v1.4.200
++ ### JUnit v5.8.1
++ ### Mockito v4.0.0
++ ### Apache Maven v3.8.1
++ ### Jenkins v2.319.2 
+
 <h3 align="center">Dashboard</h3>
 <img src="https://enumerable-entity.s3.eu-central-1.amazonaws.com/Dashboard.jpg"/>
 
