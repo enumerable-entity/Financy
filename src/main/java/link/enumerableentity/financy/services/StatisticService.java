@@ -39,15 +39,15 @@ public class StatisticService {
             incomingSumsByDay[i] = transactionsRepository
                     .findAllByDateAndTypeAndUser(LocalDate.now().minusDays(i), Type.INCOMING, user)
                     .stream()
-                    .map((x) -> x.getAmount())
-                    .reduce(0.0, (a, b) -> a + b);
+                    .map(Transaction::getAmount)
+                    .reduce(0.0, Double::sum);
         }
 
         for (int i = 0; i < 7; i++){
             outgoingSumsByDay[i] = transactionsRepository
                     .findAllByDateAndTypeAndUser(LocalDate.now().minusDays(i), Type.OUTGOING, user).stream()
-                    .map((x) -> x.getAmount())
-                    .reduce(0.0, (a, b) -> a + b);
+                    .map(Transaction::getAmount)
+                    .reduce(0.0, Double::sum);
         }
         return new ChartData(incomingSumsByDay, outgoingSumsByDay);
     }

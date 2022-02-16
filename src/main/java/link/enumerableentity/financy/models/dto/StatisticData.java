@@ -1,5 +1,7 @@
 package link.enumerableentity.financy.models.dto;
 
+import java.util.Objects;
+
 public class StatisticData {
 
     private final double lastWeekTotalIncomesAmount;
@@ -50,4 +52,16 @@ public class StatisticData {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StatisticData that = (StatisticData) o;
+        return Double.compare(that.lastWeekTotalIncomesAmount, lastWeekTotalIncomesAmount) == 0 && Double.compare(that.lastWeekTotalExpensesAmount, lastWeekTotalExpensesAmount) == 0 && Double.compare(that.lastMonthTotalIncomesAmount, lastMonthTotalIncomesAmount) == 0 && Double.compare(that.lastMonthTotalExpensesAmount, lastMonthTotalExpensesAmount) == 0 && Double.compare(that.lastSixMonthTotalIncomesAmount, lastSixMonthTotalIncomesAmount) == 0 && Double.compare(that.lastSixMonthTotalExpensesAmount, lastSixMonthTotalExpensesAmount) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastWeekTotalIncomesAmount, lastWeekTotalExpensesAmount, lastMonthTotalIncomesAmount, lastMonthTotalExpensesAmount, lastSixMonthTotalIncomesAmount, lastSixMonthTotalExpensesAmount);
+    }
 }
