@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @Service
-public final class UserService {
+public class UserService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -25,33 +25,40 @@ public final class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(UserRegistrationRequest requestDto, HttpServletRequest request) {
+    public User registerUser(UserRegistrationRequest requestDto, HttpServletRequest request) {
         if (checkUserExist(requestDto.getEmail())) {
             throw new UserAlreadyExistException("User with this email already exist");
         }
-        User newUser = new User();
-        newUser.setEmail(requestDto.getEmail());
-        newUser.setFirstName(requestDto.getFirstName());
-        newUser.setLastName(requestDto.getLastName());
+
+        User newUser = mapToUser(requestDto);
+
         newUser.setRole(Role.USER);
         newUser.setRegistredAt(LocalDate.now());
-        newUser.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        userRepository.save(newUser);
+        User savedUser = userRepository.save(newUser);
+
         authenticateAfterRegistration(request, requestDto.getEmail(), requestDto.getPassword());
-
+        return savedUser;
     }
-
 
     private boolean checkUserExist(String username) {
         return userRepository.findByEmail(username).isPresent();
     }
 
-    private void authenticateAfterRegistration(HttpServletRequest request, String username, String password) {
+    void authenticateAfterRegistration(HttpServletRequest request, String username, String password) {
         try {
             request.login(username, password);
         } catch (ServletException e) {
             System.err.println("An error occurred during the auto authentication after user registration");
             e.printStackTrace();
         }
+    }
+
+    private User mapToUser(UserRegistrationRequest dto){
+        User user = new User();
+        user.setEmail(dto.getEmail());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        return user;
     }
 }
