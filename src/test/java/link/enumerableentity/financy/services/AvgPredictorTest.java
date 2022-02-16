@@ -4,10 +4,13 @@ import link.enumerableentity.financy.enums.Type;
 import link.enumerableentity.financy.models.Category;
 import link.enumerableentity.financy.models.Transaction;
 import link.enumerableentity.financy.repositories.TransactionsRepository;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -27,12 +30,12 @@ public class AvgPredictorTest {
     @InjectMocks
     private AvgPredictor avgPredictor;
 
-    private static List<Transaction> incomesTest;
-    private static List<Transaction> outgoingsTest;
+    private static List<Transaction> incomesTransactionsTestList;
+    private static List<Transaction> outgoingsTransactionsTestList;
 
     @BeforeAll
     static void setUp() {
-        incomesTest = Arrays.asList(
+        incomesTransactionsTestList = Arrays.asList(
                 new Transaction(1L,
                         "TestTransaction1",
                         Type.INCOMING,
@@ -47,7 +50,7 @@ public class AvgPredictorTest {
                         null,
                         100.50,
                         LocalDate.of(2022,01,13)));
-        outgoingsTest = Arrays.asList(
+        outgoingsTransactionsTestList = Arrays.asList(
                 new Transaction(3L,
                         "TestTransaction1",
                         Type.OUTGOING,
@@ -65,7 +68,8 @@ public class AvgPredictorTest {
 
     }
 
-    @Test
+    @Test()
+    @DisplayName("Predicted data for user test")
     void getPredictedDataForUserTest() {
 
         when(transactionsRepository.findAllByDateBetweenAndTypeAndUser(
@@ -73,13 +77,13 @@ public class AvgPredictorTest {
                 LocalDate.now(),
                 Type.INCOMING,
                 null))
-                .thenReturn(incomesTest);
+                .thenReturn(incomesTransactionsTestList);
         when(transactionsRepository.findAllByDateBetweenAndTypeAndUser(
                 LocalDate.now().minusMonths(6),
                 LocalDate.now(),
                 Type.OUTGOING,
                 null))
-                .thenReturn(outgoingsTest);
+                .thenReturn(outgoingsTransactionsTestList);
 
         Assertions.assertEquals(150.5, avgPredictor.getPredictedDataForUser(null).getPredictedMonthIncomes());
         Assertions.assertEquals(230.5, avgPredictor.getPredictedDataForUser(null).getPredictedMonthExpenses());
