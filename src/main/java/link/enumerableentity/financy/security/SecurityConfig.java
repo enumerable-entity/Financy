@@ -29,17 +29,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .logout(logout -> logout.logoutSuccessUrl("/auth/login"))
                 .authorizeRequests()
                 .antMatchers("/res/**").permitAll()
                 .antMatchers("/h2/**").permitAll()
                 .antMatchers("/auth/register").permitAll()
+                .antMatchers("/auth/login").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/auth/login").permitAll()
-                .defaultSuccessUrl("/");
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/auth/login")
+                .defaultSuccessUrl("/")
+                .failureUrl("/auth/login")
+                .and()
+                .rememberMe()
+                .rememberMeParameter("remember-me")
+                .userDetailsService(userDetailsService)
+                .and()
+                .logout()
+                .logoutUrl("/auth/logout")
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/auth/login");
     }
 
 
