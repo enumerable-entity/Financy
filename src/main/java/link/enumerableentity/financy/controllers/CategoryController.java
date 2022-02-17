@@ -3,6 +3,7 @@ package link.enumerableentity.financy.controllers;
 import link.enumerableentity.financy.models.Category;
 import link.enumerableentity.financy.models.User;
 import link.enumerableentity.financy.models.dto.CategoryDto;
+import link.enumerableentity.financy.models.dto.TransactionDto;
 import link.enumerableentity.financy.repositories.CategoryRepository;
 import link.enumerableentity.financy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,14 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/add")
-    private String addCategory (@Valid @ModelAttribute CategoryDto categoryDto, BindingResult validation, HttpServletRequest httpRequest, Principal principal){
+    String addCategory (@Valid @ModelAttribute("categoryDto") CategoryDto categoryDto,
+                                     BindingResult validation,
+                                     Principal principal,
+                                     HttpServletRequest httpServletRequest){
 
-        if(validation.hasErrors()) return "redirect:" + httpRequest.getHeader("Referer");
+        if(validation.hasErrors()){
+            return "categories";
+        }
 
         Category newCategory = new Category();
         newCategory.setTitle(categoryDto.getTitle().toUpperCase());
@@ -41,7 +47,7 @@ public class CategoryController {
         newCategory.setUser(userRepository.findByEmail(principal.getName()).get());
         categoryRepository.saveAndFlush(newCategory);
 
-        return "redirect:" + httpRequest.getHeader("Referer");
+        return "redirect:/categories/all";
     }
 
     @GetMapping(path = "/all")
@@ -50,15 +56,21 @@ public class CategoryController {
         User user = userRepository.findByEmail(principal.getName()).get();
         Iterable<Category> categoriesList = categoryRepository.findAllByUser(user);
         modelAndView.addObject("categoryList", categoriesList);
+        modelAndView.addObject("categoryDto", new CategoryDto());
+        modelAndView.addObject("transactionDto", new TransactionDto());
         modelAndView.setViewName("categories");
         return modelAndView;
     }
 
     @PostMapping(path = "/edit/{categoryId}")
-    private String editCategory (@ModelAttribute @Valid CategoryDto categoryDto,
+    private String editCategory (@Valid @ModelAttribute("categoryDto") CategoryDto categoryDto,
+                                 BindingResult validation,
                                  @PathVariable Long categoryId,
                                  HttpServletRequest httpRequest,
                                  Principal principal){
+        if(validation.hasErrors()){
+            return "categories";
+        }
 
         Category categoryToEdit = categoryRepository.findById(categoryId).orElseThrow(NoSuchElementException::new);
         if (categoryToEdit.getUser().getEmail().equals(principal.getName()) ) {
@@ -72,7 +84,6 @@ public class CategoryController {
     }
 
     @GetMapping(path = "/delete/{categoryId}")
-
     private String deleteCategory (@PathVariable Long categoryId, HttpServletRequest httpRequest, Principal principal){
         Category catToDelete = categoryRepository.findById(categoryId).orElseThrow(NoSuchElementException::new);
         if (catToDelete.getUser().getEmail().equals(principal.getName()) ) {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,53 +32,53 @@
         <link href="../res/signin.css" rel="stylesheet">
     </head>
     <body class="text-center">
-
         <div class="container">
 
             <div class="row">
                 <div class="col-12">
-                    <img class="" src="../res/logo.svg" alt="logo"
-                        style="max-width: 900px; max-height: 300px">
+                    <a href="/">
+                        <img class="" src="../res/logo.svg" alt="logo"
+                            style="max-width: 300px; max-height: 300px">
+                    </a>
                 </div>
             </div>
 
             <main class="form-signin">
+                <form th:method="POST" th:action="@{/auth/login}">
 
-                <form method="post" action="/auth/login">
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-                    <div class="form-floating">
+                    <div class="form-floating mb-2">
                         <input type="text" class="form-control" name="username"
-                            id="username" placeholder="Username" required>
+                            id="username" placeholder="Username" >
                         <label for="username">Username</label>
                     </div>
                     <div class="form-floating">
                         <input type="password" class="form-control"
                             name="password" id="password" placeholder="Password"
-                            required>
+                            >
                         <label for="password">Password</label>
                     </div>
 
                     <div class="checkbox mb-3">
                         <label>
-                            <input type="checkbox" value="remember-me"> Remember
-                            me
+                            <input type="checkbox" name="remember-me"> Remember me
                         </label>
                     </div>
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign
-                        in</button>
 
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                     <div class="row mt-3">
                         <div class="col-12">
                             <a href="/auth/register" class="link-primary mt-5
-                                fs-6">Not registred? Sign up right now!</a>
+                                fs-6">Not registered? Sign up right now!</a>
                         </div>
                     </div>
-
-
-                    <p class="mt-5 mb-3 text-muted h6">enumerable-entity project 2022</p>
-                    <h6 th:text="${@environment.getProperty('financy.app.version')}" class="text-muted">Artifact version here </h6>
                 </form>
+                <div class="">
+                        <p class="mt-5 mb-3 text-muted h6">enumerable-entity project</p>
+                        <p th:text="${@environment.getProperty('financy.app.version')}" class="text-muted">Artifact version here </p>
+                    <p class=" mb-3 text-muted h6">2022</p>
+                </div>
             </main>
         </div>
     </body>

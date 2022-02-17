@@ -8,17 +8,17 @@ import java.time.LocalDate;
 
 public class TransactionDto {
 
-    @NotBlank(message = "Title can't be empty")
-    @Size(min = 3, max = 30, message = "Length must be between 3 an 30")
+
+    @Size(min = 3, max = 30, message = "Should be from 1 to 30 symbols long")
     private String title;
 
-    @NotNull(message = "Transaction type can't be null")
+    @NotNull(message = "Type can not be empty")
     private Type type;
 
-    @NotNull(message = "Transaction category can't be null")
+    @NotNull(message = "Category can not be empty")
     private Category category;
 
-    @PositiveOrZero(message = "Amount can't be negative number")
+    @PositiveOrZero(message = "Can not be negative number")
     @Max(value = Long.MAX_VALUE)
     private double amount;
 

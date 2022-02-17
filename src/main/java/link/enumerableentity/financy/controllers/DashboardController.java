@@ -6,6 +6,7 @@ import link.enumerableentity.financy.models.User;
 import link.enumerableentity.financy.models.dto.ChartData;
 import link.enumerableentity.financy.models.dto.PredictorData;
 import link.enumerableentity.financy.models.dto.StatisticData;
+import link.enumerableentity.financy.models.dto.TransactionDto;
 import link.enumerableentity.financy.repositories.CategoryRepository;
 import link.enumerableentity.financy.repositories.TransactionsRepository;
 import link.enumerableentity.financy.repositories.UserRepository;
@@ -53,15 +54,18 @@ public class DashboardController {
         List<Transaction> transactionsList = transactionsRepository.findAllByUser(
                 authUser,
                 PageRequest.of(0,10, Sort.Direction.DESC, "date"));
+
         Iterable<Category> categoryList = categoryRepository.findAllByUser(authUser);
         ChartData chartData = statisticService.getChartDataForUser(authUser);
         PredictorData predictorData = predictor.getPredictedDataForUser(authUser);
         StatisticData statisticData = statisticService.getStatisticDataForUser(authUser);
+
         modelAndView.addObject("transactionsList", transactionsList);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("chartData", chartData);
         modelAndView.addObject("predictorData", predictorData);
         modelAndView.addObject("statisticData", statisticData);
+        modelAndView.addObject("transactionDto", new TransactionDto());
         modelAndView.setViewName("dashboard");
 
         return modelAndView;

@@ -11,6 +11,7 @@ import link.enumerableentity.financy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,10 +39,14 @@ public class TransactionController {
     }
 
     @PostMapping(path = "/add")
-    String addTransaction (@ModelAttribute @Valid TransactionDto transactionDto,
+    String addTransaction (@ModelAttribute("transactionDto") @Valid TransactionDto transactionDto,
+                           BindingResult validation,
                            HttpServletRequest httpRequest,
                            Principal principal){
 
+        if(validation.hasErrors()){
+            return "redirect:/error";
+        }
         Transaction newTransaction = new Transaction();
         newTransaction.setTitle(transactionDto.getTitle());
         newTransaction.setAmount(transactionDto.getAmount());
@@ -63,18 +68,24 @@ public class TransactionController {
         Iterable<Category> categoryList = categoryRepository.findAllByUser(authUser);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("transactionsList", transactions);
+        modelAndView.addObject("transactionDto", new TransactionDto());
         modelAndView.setViewName("all_transactions");
 
         return modelAndView;
     }
 
     @PostMapping(path = "/edit/{id}")
-    String editTransaction (@ModelAttribute @Valid TransactionDto transactionDto,
+    String editTransaction (@Valid  @ModelAttribute("transactionDto") TransactionDto transactionDto,
+                            BindingResult validation,
                             @PathVariable Long id,
                             HttpServletRequest httpRequest,
                             Principal principal){
 
-        Transaction transactionToEdit = transactionsRepository.findById(id).orElseThrow(()-> new NoSuchElementException("There is no transaction with this id"));
+        if(validation.hasErrors()){
+            return "all_transactions";
+        }
+        Transaction transactionToEdit = transactionsRepository.findById(id).orElseThrow(
+                ()-> new NoSuchElementException("There is no transaction with this id"));
 
         if (transactionToEdit.getUser().getEmail().equals(principal.getName()) ) {
             transactionToEdit.setTitle(transactionDto.getTitle());
@@ -107,6 +118,7 @@ public class TransactionController {
         Iterable<Category> categoryList = categoryRepository.findAllByUser(authUser);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("transactionsList", transactions);
+        modelAndView.addObject("transactionDto", new TransactionDto());
         modelAndView.setViewName("incoming_tr");
 
         return modelAndView;
@@ -121,6 +133,7 @@ public class TransactionController {
         Iterable<Category> categoryList = categoryRepository.findAllByUser(authUser);
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("transactionsList", transactions);
+        modelAndView.addObject("transactionDto", new TransactionDto());
         modelAndView.setViewName("outgoing_tr");
 
         return modelAndView;
@@ -134,6 +147,7 @@ public class TransactionController {
         Iterable<Category> categoryList = categoryRepository.findAll();
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.addObject("transactionsList", foundedTransactions);
+        modelAndView.addObject("transactionDto", new TransactionDto());
         modelAndView.setViewName("search_results");
 
         return modelAndView;

@@ -1,5 +1,3 @@
-
-
 <!-- Add new transaction modal window -->
 
 <div class="modal fade" id="AddTransModal" tabindex="-1" aria-labelledby="AddTransModalLabel" aria-hidden="true">
@@ -10,36 +8,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/transactions/add" method="post">
+                <form th:action="@{/transactions/add}" method="post" th:object="${transactionDto}">
                     <div class="mb-3">
                         <label for="exampleInputTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" name="title" required>
+                        <input th:field="*{title}" type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="davaToday" class="form-label">Select transaction date</label>
-                        <input type="date" class="form-control" name="date" id="davaToday" required>
-
+                        <input th:field="*{date}" type="date" class="form-control" id="davaToday" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleAmount" class="form-label">Amount</label>
-                        <input type="number" class="form-control" id="exampleAmount" name="amount" value="0" min="0" step="0.1">
+                        <input th:field="*{amount}" type="number" class="form-control" id="exampleAmount" value="0" min="0" step="0.1">
                     </div>
                     <div class="mb-3">
                         <label for="groupSelect" class="form-label">Category</label>
-                        <select class="form-select" aria-label="Default select example" id="groupSelect" name="category" required>
-                            <option selected disabled value="">Select category</option>
+                        <select th:field="*{category}" class="form-select" aria-label="Default select example" id="groupSelect" required>
+                            <option selected="true" disabled value="">Select category</option>
                             <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}">categotyList</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="RadioInTr" value="INCOMING" required>
+                            <input th:field="*{type}" class="form-check-input" type="radio" id="RadioInTr" value="INCOMING" required>
                             <label class="form-check-label" for="RadioInTr">
                                 Incoming transaction
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="RadioOutTr" value="OUTGOING" required>
+                            <input th:field="*{type}" class="form-check-input" type="radio" name="type" id="RadioOutTr" value="OUTGOING" required>
                             <label class="form-check-label" for="RadioOutTr">
                                 Outgoing transaction
                             </label>
@@ -79,36 +76,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/transactions/edit/" method="post" id="editForm">
+                <form th:action="@{/transactions/edit/}" method="post" th:object="${transactionDto}" id="editForm">
                     <div class="mb-3">
                         <label for="input_title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="input_title" aria-describedby="emailHelp" name="title" required>
+                        <input th:field="*{title}" type="text" class="form-control" id="input_title" aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="davaToday" class="form-label">Select transaction date</label>
-                        <input type="date" class="form-control" name="date" id="date" required>
+                        <input th:field="*{date}" type="date" class="form-control" id="date" required>
 
                     </div>
                     <div class="mb-3">
                         <label for="AmountToEdit" class="form-label">Amount</label>
-                        <input type="number" class="form-control" id="AmountToEdit" name="amount" value="0" min="0" step="0.1">
+                        <input th:field="*{amount}" type="number" class="form-control" id="AmountToEdit" value="0" min="0" step="0.1">
                     </div>
                     <div class="mb-3">
                         <label for="EditGroupSelect" class="form-label">Category</label>
-                        <select class="form-select" aria-label="Default select example" id="EditGroupSelect" name="category" required>
+                        <select th:field="*{category}" class="form-select" aria-label="Default select example" id="EditGroupSelect" required>
                             <option selected disabled value="">Select category</option>
                             <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}">categotyList</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="EditRadioInTr" value="INCOMING">
+                            <input th:field="*{type}" class="form-check-input" type="radio" id="EditRadioInTr" value="INCOMING">
                             <label class="form-check-label" for="EditRadioInTr">
                                 Incoming transaction
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="EditRadioOutTr" value="OUTGOING">
+                            <input th:field="*{type}" class="form-check-input" type="radio" id="EditRadioOutTr" value="OUTGOING">
                             <label class="form-check-label" for="EditRadioOutTr">
                                 Outgoing transaction
                             </label>
@@ -197,7 +194,7 @@
     </div>
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="/logout">Sign out</a>
+            <a class="nav-link px-3" href="/auth/logout">Sign out</a>
         </div>
     </div>
 </header>
@@ -206,7 +203,6 @@
 <th:block id="commonScripts">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
     <script src="../res/main.js"></script>
     <script>document.getElementById('davaToday').valueAsDate = new Date();</script>

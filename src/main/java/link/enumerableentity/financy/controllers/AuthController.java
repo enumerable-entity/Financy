@@ -37,8 +37,8 @@ public class AuthController {
         return modelAndView;
     }
     @PostMapping(path = "/register")
-    String registerNewUser( @Valid @ModelAttribute("regRequest") UserRegistrationRequest regRequest, BindingResult bindingResult, HttpServletRequest request){
-        if(bindingResult.hasErrors()){
+    String registerNewUser( @Valid @ModelAttribute("regRequest") UserRegistrationRequest regRequest, BindingResult validation, HttpServletRequest request){
+        if(validation.hasErrors()){
             return "registration";
         }
         userService.registerUser(regRequest, request);
