@@ -31,14 +31,17 @@ public class AuthController {
     }
 
     @GetMapping(path = "/register")
-    ModelAndView getRegtistrationPage(ModelAndView modelAndView){
-        modelAndView.addObject("userData", new UserRegistrationRequest());
+    ModelAndView getRegtistrationPage(ModelAndView modelAndView, UserRegistrationRequest userData){
+        modelAndView.addObject("regRequest", new UserRegistrationRequest());
         modelAndView.setViewName("registration");
         return modelAndView;
     }
     @PostMapping(path = "/register")
-    String registerNewUser(@Valid @ModelAttribute UserRegistrationRequest user, HttpServletRequest httpServletRequest, BindingResult bindingResult){
-        userService.registerUser(user, httpServletRequest);
+    String registerNewUser( @Valid @ModelAttribute("regRequest") UserRegistrationRequest regRequest, BindingResult bindingResult, HttpServletRequest request){
+        if(bindingResult.hasErrors()){
+            return "registration";
+        }
+        userService.registerUser(regRequest, request);
         return "redirect:/";
     }
 }

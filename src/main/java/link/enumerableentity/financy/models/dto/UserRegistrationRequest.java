@@ -6,17 +6,17 @@ import javax.validation.constraints.Size;
 
 public class UserRegistrationRequest {
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "Email can`t be empty")
+    @Email(message = "Not valid email address")
     private  String email;
-    @NotBlank
-    @Size(min = 8, max = 25, message = "Password is empty, too long or too short")
+
+    @Size(min = 8, max = 25, message = "Should be from 8 to 25 symbols")
     private  String password;
-    @NotBlank
-    @Size(min = 5, max = 15, message = "First name is empty, too long or too short")
+
+    @Size(min = 3, max = 15, message = "Should be from 3 to 15 symbols")
     private  String firstName;
-    @NotBlank
-    @Size(min = 5, max = 15, message = "Last name is empty, too long or too short")
+
+    @Size(min = 3, max = 15, message = "Should be from 3 to 15 symbols")
     private  String lastName;
 
 

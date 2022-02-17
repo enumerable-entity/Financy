@@ -38,46 +38,62 @@
             <div class="row">
                 <div class="col-12">
                     <img class="" src="../res/logo.svg" alt="logo"
-                        style="max-width: 900px; max-height: 300px">
+                        style="max-width: 300px; max-height: 300px">
                 </div>
             </div>
 
             <main class="form-signin">
 
                 <form th:method="post" th:action="@{/auth/register}"
-                    th:object="${userData}">
+                    th:object="${regRequest}">
                     <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
                     <div class="form-floating">
-                        <input type="email" class="form-control"
-                            th:field="*{email}" id="email" placeholder="email"
-                            required>
+                        <input type="text" class="form-control"
+                               th:field="*{email}" id="email" placeholder="email"
+                            >
                         <label for="email">Email</label>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('email')}"
+                           th:each="err : ${#fields.errors('email')}"
+                           th:text="${err}"></p>
                     </div>
                     <div class="form-floating mt-2">
                         <input type="text" class="form-control"
                             th:field="*{firstName}" id="firstName"
-                            placeholder="First name" required>
+                            placeholder="First name" >
                         <label for="firstName">First name</label>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('firstName')}"
+                           th:each="err : ${#fields.errors('firstName')}"
+                           th:text="${err}"></p>
                     </div>
                     <div class="form-floating mt-2">
                         <input type="text" class="form-control"
                             th:field="*{lastName}" id="lastName"
-                            placeholder="Last name" required>
+                            placeholder="Last name" >
                         <label for="firstName">Last name</label>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('lastName')}"
+                           th:each="err : ${#fields.errors('lastName')}"
+                           th:text="${err}"></p>
                     </div>
                     <div class="form-floating mt-2">
-                        <input type="password" class="form-control"
+                        <input type="password" class="form-control m-0"
                             th:field="*{password}" id="password"
-                            placeholder="Password" required minlength="8">
+                            placeholder="Password">
                         <label for="password">Password</label>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('password')}"
+                           th:each="err : ${#fields.errors('password')}"
+                           th:text="${err}"></p>
                     </div>
 
 
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                    <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Sign up</button>
                 </form>
-                <p class="mt-5 mb-3 text-muted">&copy; Artur Babii OOP project
-                    2021</p>
+                <p class="mt-5 text-muted">&copy; enumerable-entity project</p>
+                <p class="mb-3 text-muted"> 2022 </p>
             </main>
         </div>
     </body>
