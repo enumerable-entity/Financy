@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html data-cbscriptallow="true" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error</title>
+
+    <th:block th:replace="~{fragments :: #commonStyles}">Styles here </th:block>
+    <link th:href="@{/res/error.css}" rel="stylesheet">
+</head>
+<body data-new-gr-c-s-check-loaded="8.890.0" data-gr-ext-installed="">
+
+<!-- Header-->
+<div th:replace="~{fragments :: #header}">Header here </div>
+<!--Header-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar menu-->
+        <div th:replace="~{fragments :: #sidebarMenu}">Sidebar menu here </div>
+        <!-- Sidebar menu-->
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <!-- Add new transaction modal window-->
+            <div th:replace="~{fragments :: #AddTransModal}">Add new transaction modal window here </div>
+            <!-- Add new transaction modal window-->
+
+            <section class="centered">
+                <h1>Something went wrong</h1>
+                <div class="container text-center">
+                    <span class="message" id="js-whoops"></span>
+                    <span class="message" id="js-appears"></span>
+                    <span class="message" id="js-error"></span>
+                    <span class="message" id="js-apology"></span>
+                    <div>
+                        <span class="hidden" id="js-hidden">
+                            Message Here
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+
+<!--JavaScript-->
+<div th:replace="~{fragments :: #commonScripts}"></div>
+<script src="../res/error.js"></script>
+<!--JavaScript-->
+</body>
+</html>
