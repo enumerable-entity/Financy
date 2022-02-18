@@ -7,7 +7,6 @@ import link.enumerableentity.financy.models.dto.TransactionDto;
 import link.enumerableentity.financy.repositories.CategoryRepository;
 import link.enumerableentity.financy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

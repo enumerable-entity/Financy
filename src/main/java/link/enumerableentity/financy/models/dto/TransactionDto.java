@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class TransactionDto {
 
 
-    @Size(min = 3, max = 30, message = "Should be from 1 to 30 symbols long")
+    @Size(min = 3, max = 30, message = "Should be from 3 to 30 symbols long")
     private String title;
 
     @NotNull(message = "Type can not be empty")

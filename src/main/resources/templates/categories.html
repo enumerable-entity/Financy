@@ -40,7 +40,7 @@
                             <form th:object="${categoryDto}" th:action="@{/categories}" method="post" name="addNewCat">
                                 <div class="mb-3">
                                     <label for="AddTitle" class="form-label">Title</label>
-                                    <input th:field="*{title}" type="text" class="form-control" id="AddTitle" aria-describedby="emailHelp" required >
+                                    <input th:field="*{title}" type="text" class="form-control" id="AddTitle" aria-describedby="emailHelp" required minlength="1" maxlength="20">
                                     <p class="m-0 alert-danger"
                                        th:if="${#fields.hasErrors('title')}"
                                        th:each="err : ${#fields.errors('title')}"
@@ -51,13 +51,13 @@
 
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioInTr" value="INCOMING" >
+                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioInTr" value="INCOMING" required>
                                         <label class="form-check-label" for="RadioInTr">
                                             For incoming transactions
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioOutTr" value="OUTGOING" >
+                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioOutTr" value="OUTGOING" required>
                                         <label class="form-check-label" for="RadioOutTr">
                                             For outgoing transactions
                                         </label>
@@ -108,7 +108,8 @@
                             <form action="/categories/" method="post" id="editCatForm">
                                 <div class="mb-3">
                                     <label for="exampleInputTitle" class="form-label">Title</label>
-                                    <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" name="title" style="text-transform: uppercase" required>
+                                    <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp"
+                                           name="title" style="text-transform: uppercase" required minlength="1" maxlength="20">
                                 </div>
 
                                 <div class="mb-3">

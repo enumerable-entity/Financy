@@ -84,40 +84,31 @@ public class TransactionController {
     }
 
     @PostMapping(path = "/{id}")
-    ModelAndView editTransaction (@Valid  @ModelAttribute("transactionDto") TransactionDto transactionDto,
+    String editTransaction (@Valid  @ModelAttribute("transactionDto") TransactionDto transactionDto,
                             BindingResult validation,
                             @PathVariable Long id,
-                            ModelAndView modelAndView,
                             HttpServletRequest httpRequest,
                             Principal principal){
         User authUser = userRepository.findByEmail(principal.getName()).get();
+
         if(validation.hasErrors()){
-            modelAndView.addObject("categoryList", categoryRepository.findAllByUser(authUser));
-            modelAndView.setViewName("all_transactions");
-            return modelAndView;
+            return "redirect:/error";
         }
         Transaction transactionToEdit = transactionsRepository.findById(id).orElseThrow(
                 ()-> new NoSuchElementException("There is no transaction with this id"));
 
-        if (transactionToEdit.getUser().getEmail().equals(principal.getName()) ) {
-
-            transactionToEdit.setTitle(transactionDto.getTitle());
-            transactionToEdit.setType(transactionDto.getType());
-            transactionToEdit.setCategory(transactionDto.getCategory());
-            transactionToEdit.setAmount(transactionDto.getAmount());
-            transactionToEdit.setDate(transactionDto.getDate());
-            transactionsRepository.save(transactionToEdit);
-        }
-        else throw new AccessDeniedException("Access denied for editing this entity");
-
-        if (Pattern.matches("\\d$", httpRequest.getHeader("Referer"))) {
-            modelAndView.setViewName("redirect:/transactions");
-        } else {
-            modelAndView.setViewName("redirect:" + httpRequest.getHeader("Referer"));
+        if (!transactionToEdit.getUser().getEmail().equals(principal.getName()) ) {
+            throw new AccessDeniedException("Access denied for editing this entity");
         }
 
+        transactionToEdit.setTitle(transactionDto.getTitle());
+        transactionToEdit.setType(transactionDto.getType());
+        transactionToEdit.setCategory(transactionDto.getCategory());
+        transactionToEdit.setAmount(transactionDto.getAmount());
+        transactionToEdit.setDate(transactionDto.getDate());
+        transactionsRepository.save(transactionToEdit);
 
-        return modelAndView;
+        return "redirect:" + httpRequest.getHeader("Referer");
     }
 
     @GetMapping(path = "/delete/{transactionId}")

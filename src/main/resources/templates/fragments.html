@@ -11,7 +11,8 @@
                 <form th:action="@{/transactions}" method="post" th:object="${transactionDto}">
                     <div class="mb-3">
                         <label for="exampleInputTitle" class="form-label">Title</label>
-                        <input th:field="*{title}" type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" >
+                        <input th:field="*{title}" type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp"
+                               minlength="3" maxlength="30" required>
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('title')}"
                            th:each="err : ${#fields.errors('title')}"
@@ -20,7 +21,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="davaToday" class="form-label">Select transaction date</label>
-                        <input th:field="*{date}" type="date" class="form-control" id="davaToday" >
+                        <input th:field="*{date}" type="date" class="form-control" id="davaToday" max ="" required >
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('date')}"
                            th:each="err : ${#fields.errors('date')}"
@@ -29,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleAmount" class="form-label">Amount</label>
-                        <input th:field="*{amount}" type="number" class="form-control" id="exampleAmount" value="0" min="-4" step="0.1">
+                        <input th:field="*{amount}" type="number" class="form-control" id="exampleAmount" value="0" min="0" step="0.1" required>
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('amount')}"
                            th:each="err : ${#fields.errors('amount')}"
@@ -38,8 +39,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="groupSelect" class="form-label">Category</label>
-                        <select th:field="*{category}" class="form-select" aria-label="Default select example" id="groupSelect" >
-                            <option selected="true" disabled value="">Select category</option>
+                        <select th:field="*{category}" class="form-select" aria-label="Default select example" id="groupSelect" required>
+                            <option selected="true" disabled name="defSelect" value="">Select category</option>
                             <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}">categotyList</option>
                         </select>
                         <p class="m-0 alert-danger"
@@ -50,13 +51,13 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input th:field="*{type}" class="form-check-input" type="radio" id="RadioInTr" value="INCOMING" >
+                            <input th:field="*{type}" class="form-check-input" type="radio" id="RadioInTr" value="INCOMING" required>
                             <label class="form-check-label" for="RadioInTr">
                                 Incoming transaction
                             </label>
                         </div>
                         <div class="form-check">
-                            <input th:field="*{type}" class="form-check-input" type="radio" name="type" id="RadioOutTr" value="OUTGOING" >
+                            <input th:field="*{type}" class="form-check-input" type="radio" name="type" id="RadioOutTr" value="OUTGOING" required>
                             <label class="form-check-label" for="RadioOutTr">
                                 Outgoing transaction
                             </label>
@@ -104,37 +105,63 @@
                 <form th:action="@{/transactions/}" method="post" th:object="${transactionDto}" id="editForm">
                     <div class="mb-3">
                         <label for="input_title" class="form-label">Title</label>
-                        <input th:field="*{title}" type="text" class="form-control" id="input_title" aria-describedby="emailHelp" required>
+                        <input th:field="*{title}" type="text" class="form-control" id="input_title" aria-describedby="emailHelp"
+                               minlength="3" maxlength="30" required>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('title')}"
+                           th:each="err : ${#fields.errors('title')}"
+                           th:text="${err}">
+                        </p>
                     </div>
                     <div class="mb-3">
-                        <label for="davaToday" class="form-label">Select transaction date</label>
-                        <input th:field="*{date}" type="date" class="form-control" id="date" required>
+                        <label for="date" class="form-label">Select transaction date</label>
+                        <input th:field="*{date}" type="date" class="form-control" id="date" max ="" required>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('date')}"
+                           th:each="err : ${#fields.errors('date')}"
+                           th:text="${err}">
+                        </p>
 
                     </div>
                     <div class="mb-3">
                         <label for="AmountToEdit" class="form-label">Amount</label>
                         <input th:field="*{amount}" type="number" class="form-control" id="AmountToEdit" value="0" min="0" step="0.1">
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('amount')}"
+                           th:each="err : ${#fields.errors('amount')}"
+                           th:text="${err}">
+                        </p>
                     </div>
                     <div class="mb-3">
                         <label for="EditGroupSelect" class="form-label">Category</label>
                         <select th:field="*{category}" class="form-select" aria-label="Default select example" id="EditGroupSelect" required>
-                            <option selected disabled value="">Select category</option>
+                            <option selected disabled value="default">Select category</option>
                             <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}">categotyList</option>
                         </select>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('category')}"
+                           th:each="err : ${#fields.errors('category')}"
+                           th:text="${err}">
+                        </p>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input th:field="*{type}" class="form-check-input" type="radio" id="EditRadioInTr" value="INCOMING">
+                            <input th:field="*{type}" class="form-check-input" type="radio" id="EditRadioInTr" value="INCOMING" required>
                             <label class="form-check-label" for="EditRadioInTr">
                                 Incoming transaction
                             </label>
                         </div>
                         <div class="form-check">
-                            <input th:field="*{type}" class="form-check-input" type="radio" id="EditRadioOutTr" value="OUTGOING">
+                            <input th:field="*{type}" class="form-check-input" type="radio" id="EditRadioOutTr" value="OUTGOING" required>
                             <label class="form-check-label" for="EditRadioOutTr">
                                 Outgoing transaction
                             </label>
                         </div>
+                        <p class="m-0 alert-danger"
+                           th:if="${#fields.hasErrors('type')}"
+                           th:each="err : ${#fields.errors('type')}"
+                           th:text="${err}">
+                        </p>
                     </div>
                     <button  class="btn btn-primary" onclick="edit_tr()">Save changes</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

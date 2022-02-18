@@ -44,3 +44,11 @@ function edit_cat (){
             .getElementById("editCatForm")
             .getAttribute("action") + id_cat_to_edit)
 }
+
+var now = new Date(),
+
+    maxDate = now.toISOString().substring(0,10);
+
+$('[name="date"]').prop('max', maxDate);
+
+$("#groupSelect option[name='defSelect']").prop("selected", "selected")
