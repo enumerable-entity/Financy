@@ -18,7 +18,7 @@ pipeline{
                              sshagent(credentials:['jenkinsAWSssh']){
                                   sh """ ssh ubuntu@enumerable-entity.link << EOF
                                          cd app
-                                         rm -r financy*.jar
+                                         rm -rf financy*.jar || true
                                          exit
                                          EOF
                                      """
