@@ -15,7 +15,7 @@
 
     <groupId>link.enumerable-entity</groupId>
     <artifactId>financy</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.10-SNAPSHOT</version>
     <name>FinancyApp</name>
     <description>Web application for home finances management</description>
 
