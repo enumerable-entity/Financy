@@ -13,6 +13,17 @@ pipeline{
             }
             stage("Delivering artifact to AWS"){
                 steps {
+                    script {
+                             echo 'Deleting previous artifacts'
+                             sshagent(credentials:['jenkinsAWSssh']){
+                                  sh """ ssh ubuntu@enumerable-entity.link << EOF
+                                         cd app
+                                         rm -r financy*.jar
+                                         exit
+                                         EOF
+                                     """
+                                    }
+                            }
                     echo 'Delivering artifact to remote server...'
                     dir ('target') { sh 'scp *.jar ubuntu@enumerable-entity.link:/home/ubuntu/app' }
                 }
