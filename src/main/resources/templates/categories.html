@@ -37,10 +37,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form th:object="${categoryDto}" th:action="@{/categories/add}" method="post" name="addNewCat">
+                            <form th:object="${categoryDto}" th:action="@{/categories}" method="post" name="addNewCat">
                                 <div class="mb-3">
                                     <label for="AddTitle" class="form-label">Title</label>
-                                    <input th:field="*{title}" type="text" class="form-control" id="AddTitle" aria-describedby="emailHelp" required minlength="1" maxlength="20">
+                                    <input th:field="*{title}" type="text" class="form-control" id="AddTitle" aria-describedby="emailHelp" required >
                                     <p class="m-0 alert-danger"
                                        th:if="${#fields.hasErrors('title')}"
                                        th:each="err : ${#fields.errors('title')}"
@@ -51,13 +51,13 @@
 
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioInTr" value="INCOMING" required>
+                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioInTr" value="INCOMING" >
                                         <label class="form-check-label" for="RadioInTr">
                                             For incoming transactions
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioOutTr" value="OUTGOING" required>
+                                        <input th:field="*{type}" class="form-check-input" type="radio" id="AddRadioOutTr" value="OUTGOING" >
                                         <label class="form-check-label" for="RadioOutTr">
                                             For outgoing transactions
                                         </label>
@@ -105,7 +105,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="/categories/edit/" method="post" id="editCatForm">
+                            <form action="/categories/" method="post" id="editCatForm">
                                 <div class="mb-3">
                                     <label for="exampleInputTitle" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="emailHelp" name="title" style="text-transform: uppercase" required>
@@ -184,5 +184,11 @@
 <!--JavaScript-->
 <div th:replace="~{fragments :: #commonScripts}">Edit transaction modal window here </div>
 <!--JavaScript-->
+<script th:if="${#fields.hasErrors('${categoryDto.*}')}">
+    $(document).ready(function(){
+        $("#newCategoryModal").modal('show');
+    });
+
+</script>
 </body>
 </html>

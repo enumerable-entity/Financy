@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping(path = "/transactions")
@@ -38,15 +39,21 @@ public class TransactionController {
         this.categoryRepository= categoryRepository;
     }
 
-    @PostMapping(path = "/add")
-    String addTransaction (@ModelAttribute("transactionDto") @Valid TransactionDto transactionDto,
+    @PostMapping
+    ModelAndView addTransaction (@ModelAttribute("transactionDto") @Valid TransactionDto transactionDto,
                            BindingResult validation,
+                           ModelAndView modelAndView,
                            HttpServletRequest httpRequest,
                            Principal principal){
 
+        User authUser = userRepository.findByEmail(principal.getName()).get();
+
         if(validation.hasErrors()){
-            return "redirect:/error";
+            modelAndView.addObject("categoryList", categoryRepository.findAllByUser(authUser));
+            modelAndView.setViewName("all_transactions");
+            return modelAndView;
         }
+
         Transaction newTransaction = new Transaction();
         newTransaction.setTitle(transactionDto.getTitle());
         newTransaction.setAmount(transactionDto.getAmount());
@@ -56,10 +63,12 @@ public class TransactionController {
         newTransaction.setUser(userRepository.findByEmail(principal.getName()).get());
         transactionsRepository.save(newTransaction);
 
-        return "redirect:" + httpRequest.getHeader("Referer");
+        modelAndView.setViewName("redirect:" + httpRequest.getHeader("Referer"));
+
+        return modelAndView;
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping
     ModelAndView getAll (ModelAndView modelAndView,
                          Principal principal){
 
@@ -74,20 +83,24 @@ public class TransactionController {
         return modelAndView;
     }
 
-    @PostMapping(path = "/edit/{id}")
-    String editTransaction (@Valid  @ModelAttribute("transactionDto") TransactionDto transactionDto,
+    @PostMapping(path = "/{id}")
+    ModelAndView editTransaction (@Valid  @ModelAttribute("transactionDto") TransactionDto transactionDto,
                             BindingResult validation,
                             @PathVariable Long id,
+                            ModelAndView modelAndView,
                             HttpServletRequest httpRequest,
                             Principal principal){
-
+        User authUser = userRepository.findByEmail(principal.getName()).get();
         if(validation.hasErrors()){
-            return "all_transactions";
+            modelAndView.addObject("categoryList", categoryRepository.findAllByUser(authUser));
+            modelAndView.setViewName("all_transactions");
+            return modelAndView;
         }
         Transaction transactionToEdit = transactionsRepository.findById(id).orElseThrow(
                 ()-> new NoSuchElementException("There is no transaction with this id"));
 
         if (transactionToEdit.getUser().getEmail().equals(principal.getName()) ) {
+
             transactionToEdit.setTitle(transactionDto.getTitle());
             transactionToEdit.setType(transactionDto.getType());
             transactionToEdit.setCategory(transactionDto.getCategory());
@@ -97,7 +110,14 @@ public class TransactionController {
         }
         else throw new AccessDeniedException("Access denied for editing this entity");
 
-        return "redirect:" + httpRequest.getHeader("Referer");
+        if (Pattern.matches("\\d$", httpRequest.getHeader("Referer"))) {
+            modelAndView.setViewName("redirect:/transactions");
+        } else {
+            modelAndView.setViewName("redirect:" + httpRequest.getHeader("Referer"));
+        }
+
+
+        return modelAndView;
     }
 
     @GetMapping(path = "/delete/{transactionId}")

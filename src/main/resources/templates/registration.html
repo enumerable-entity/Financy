@@ -36,22 +36,20 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-12">
+                <a href="/">
                     <img class="" src="../res/logo.svg" alt="logo"
-                        style="max-width: 300px; max-height: 300px">
-                </div>
+                         style="max-width: 300px; max-height: 300px">
+                </a>
             </div>
 
             <main class="form-signin">
 
-                <form th:method="post" th:action="@{/auth/register}"
-                    th:object="${regRequest}">
+                <form th:method="post" th:action="@{/auth/register}" th:object="${regRequest}">
                     <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
                     <div class="form-floating">
                         <input type="text" class="form-control"
-                               th:field="*{email}" id="email" placeholder="email"
-                            >
+                               th:field="*{email}" id="email" placeholder="email">
                         <label for="email">Email</label>
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('email')}"
