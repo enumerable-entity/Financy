@@ -18,7 +18,7 @@ ___
 ___
 ## Used Java technologies
 
-+ ### Java 11 (Amazon Corretto 11.0.13 JDK)
++ ### Java 11 (Amazon Corretto 11.0.14 JDK)
 + ### SpringBoot v2.6.0
   + #### starter-web
   + #### starter-data-jpa
@@ -29,7 +29,8 @@ ___
 + ### Spring Framework v5.3.13 
 + ### Thymeleaf v3.0.12
 + ### Hibernate v5.6.1.Final
-+ ### H2 in-memory database v1.4.200
++ ### H2 in-memory database v1.4.200 for development
++ ### MariaDB database v10.6.5 for production
 + ### JUnit v5.8.1
 + ### Mockito v4.0.0
 + ### Apache Maven v3.8.1
