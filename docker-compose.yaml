@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  financy:
+    image: motherdock/java:SpringBootRunner
+    container_name: SpringAppFinancy
+    ports:
+      - "8082:8080"
+    volumes:
+      - /home/ubuntu/app/financy:/app
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - javaAppNet
+
+networks:
+  javaAppNet:
+   external: true
