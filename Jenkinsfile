@@ -55,7 +55,7 @@
                             echo 'Deploying...'
                             sshagent(credentials: ['jenkinsAWSssh']) {
                                 sh """ ssh ubuntu@enumerable-entity.link << EOF
-                                          docker restart SpringAppFinancy
+                                           docker-compose restart financy
                                           exit
                                           EOF
                             """
