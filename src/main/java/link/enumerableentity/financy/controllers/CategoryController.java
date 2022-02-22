@@ -32,13 +32,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    private ModelAndView addCategory (@Valid @ModelAttribute("categoryDto") CategoryDto categoryDto,
+    private ModelAndView addCategory(@Valid @ModelAttribute("categoryDto") CategoryDto categoryDto,
                                      BindingResult validation,
                                      ModelAndView modelAndView,
-                                     Principal principal){
+                                     Principal principal) {
 
         modelAndView.addObject("transactionDto", new TransactionDto());
-        if(validation.hasErrors()){
+        if (validation.hasErrors()) {
             modelAndView.setViewName("categories");
             return modelAndView;
         }
@@ -54,7 +54,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    private ModelAndView getAllForUser (ModelAndView modelAndView, Principal principal){
+    private ModelAndView getAllForUser(ModelAndView modelAndView, Principal principal) {
 
         User user = userRepository.findByEmail(principal.getName()).get();
         Iterable<Category> categoriesList = categoryRepository.findAllByUser(user);
@@ -66,25 +66,28 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/{categoryId}")
-    private ModelAndView editCategory (@Valid @ModelAttribute("categoryDto") CategoryDto categoryDto,
-                                 BindingResult validation,
-                                 @PathVariable Long categoryId,
-                                 ModelAndView modelAndView,
-                                 Principal principal){
+    private ModelAndView editCategory(@Valid @ModelAttribute("categoryDto") CategoryDto categoryDto,
+                                      BindingResult validation,
+                                      @PathVariable Long categoryId,
+                                      ModelAndView modelAndView,
+                                      Principal principal) {
         modelAndView.setViewName("categories");
         modelAndView.addObject("transactionDto", new TransactionDto());
 
-        if(validation.hasErrors()){
+        if (validation.hasErrors()) {
             return modelAndView;
         }
 
-        Category categoryToEdit = categoryRepository.findById(categoryId).orElseThrow(NoSuchElementException::new);
-        if (categoryToEdit.getUser().getEmail().equals(principal.getName()) ) {
+        Category categoryToEdit = categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new NoSuchElementException("There is no category with this id:" + categoryId));
+
+        if (categoryToEdit.getUser().getEmail().equals(principal.getName())) {
+
             categoryToEdit.setTitle(categoryDto.getTitle().toUpperCase());
             categoryToEdit.setType(categoryDto.getType());
             categoryRepository.save(categoryToEdit);
-        }
-        else throw new AccessDeniedException("Access denied for editing this entity");
+        } else throw new AccessDeniedException("Access denied for editing this category");
 
         modelAndView.setViewName("redirect:/categories");
 
@@ -92,12 +95,14 @@ public class CategoryController {
     }
 
     @GetMapping(path = "/delete/{categoryId}")
-    private String deleteCategory (@PathVariable Long categoryId, HttpServletRequest httpRequest, Principal principal){
-        Category catToDelete = categoryRepository.findById(categoryId).orElseThrow(NoSuchElementException::new);
-        if (catToDelete.getUser().getEmail().equals(principal.getName()) ) {
+    private String deleteCategory(@PathVariable Long categoryId, HttpServletRequest httpRequest, Principal principal) {
+
+        Category catToDelete = categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new NoSuchElementException("There is no category with this id: " + categoryId));
+        if (catToDelete.getUser().getEmail().equals(principal.getName())) {
             categoryRepository.delete(catToDelete);
-        }
-        else throw new AccessDeniedException("Access denied for deleting this entity");
+        } else throw new AccessDeniedException("Access denied for deleting this category");
 
         return "redirect:" + httpRequest.getHeader("Referer");
     }

@@ -29,7 +29,7 @@
         }
     </style>
         <!-- Custom styles for this template -->
-        <link href="../res/signin.css" rel="stylesheet">
+        <link href="/res/signin.css" rel="stylesheet">
     </head>
     <body class="text-center">
         <div class="container">
@@ -47,7 +47,10 @@
                 <form th:method="POST" th:action="@{/auth/login}">
 
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
+                    <div th:if="${param.logout}" class="alert-danger mb-4">
+                        You have been logged out.</div>
+                    <div th:if="${param.error}" class="alert-danger mb-4">
+                        Invalid username or password.</div>
                     <div class="form-floating mb-2">
                         <input type="text" class="form-control" name="username"
                             id="username" placeholder="Username" >
@@ -74,6 +77,7 @@
                         </div>
                     </div>
                 </form>
+
                 <div class="">
                         <p class="mt-5 mb-3 text-muted h6">enumerable-entity project</p>
                         <p th:text="${@environment.getProperty('financy.app.version')}" class="text-muted">Artifact version here </p>

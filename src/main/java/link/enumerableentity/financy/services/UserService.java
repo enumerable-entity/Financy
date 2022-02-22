@@ -26,6 +26,7 @@ public class UserService {
     }
 
     public User registerUser(UserRegistrationRequest requestDto, HttpServletRequest request) {
+
         if (checkUserExist(requestDto.getEmail())) {
             throw new UserAlreadyExistException("User with this email already exist");
         }
@@ -40,7 +41,7 @@ public class UserService {
         return savedUser;
     }
 
-    private boolean checkUserExist(String username) {
+    public boolean checkUserExist(String username) {
         return userRepository.findByEmail(username).isPresent();
     }
 

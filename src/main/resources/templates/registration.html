@@ -48,7 +48,7 @@
                     <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
                     <div class="form-floating">
-                        <input type="text" class="form-control"
+                        <input type="email" class="form-control"
                                th:field="*{email}" id="email" placeholder="email">
                         <label for="email">Email</label>
                         <p class="m-0 alert-danger"
@@ -59,7 +59,7 @@
                     <div class="form-floating mt-2">
                         <input type="text" class="form-control"
                             th:field="*{firstName}" id="firstName"
-                            placeholder="First name" >
+                            placeholder="First name" minlength="3" maxlength="15">
                         <label for="firstName">First name</label>
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('firstName')}"
@@ -69,7 +69,7 @@
                     <div class="form-floating mt-2">
                         <input type="text" class="form-control"
                             th:field="*{lastName}" id="lastName"
-                            placeholder="Last name" >
+                            placeholder="Last name" minlength="3" maxlength="15">
                         <label for="firstName">Last name</label>
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('lastName')}"
@@ -79,7 +79,7 @@
                     <div class="form-floating mt-2">
                         <input type="password" class="form-control m-0"
                             th:field="*{password}" id="password"
-                            placeholder="Password">
+                            placeholder="Password" minlength="8" maxlength="25">
                         <label for="password">Password</label>
                         <p class="m-0 alert-danger"
                            th:if="${#fields.hasErrors('password')}"

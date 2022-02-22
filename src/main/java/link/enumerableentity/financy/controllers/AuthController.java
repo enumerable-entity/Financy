@@ -21,24 +21,27 @@ public class AuthController {
     private final UserService userService;
 
     @Autowired
-    public AuthController (UserService userService){
-        this.userService=userService;
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/login")
-    String getLoginPage(){
+    String getLoginPage() {
         return "login";
     }
 
     @GetMapping(path = "/register")
-    ModelAndView getRegtistrationPage(ModelAndView modelAndView, UserRegistrationRequest userData){
+    ModelAndView getRegtistrationPage(ModelAndView modelAndView, UserRegistrationRequest userData) {
         modelAndView.addObject("regRequest", new UserRegistrationRequest());
         modelAndView.setViewName("registration");
         return modelAndView;
     }
+
     @PostMapping(path = "/register")
-    String registerNewUser( @Valid @ModelAttribute("regRequest") UserRegistrationRequest regRequest, BindingResult validation, HttpServletRequest request){
-        if(validation.hasErrors()){
+    String registerNewUser(@Valid @ModelAttribute("regRequest") UserRegistrationRequest regRequest,
+                           BindingResult validation,
+                           HttpServletRequest request) {
+        if (validation.hasErrors()) {
             return "registration";
         }
         userService.registerUser(regRequest, request);

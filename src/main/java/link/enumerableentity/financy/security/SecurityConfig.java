@@ -41,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/auth/login")
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
@@ -49,8 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/auth/logout")
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/auth/login");
+                .deleteCookies("JSESSIONID");
     }
 
 

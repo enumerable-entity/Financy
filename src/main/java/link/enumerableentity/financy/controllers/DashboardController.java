@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @Controller
@@ -50,7 +51,9 @@ public class DashboardController {
     @GetMapping(path = "/")
     ModelAndView getMainPage (ModelAndView modelAndView, Principal principal){
 
-        User authUser = userRepository.findByEmail(principal.getName()).get();
+        User authUser = userRepository.findByEmail(principal.getName())
+                .orElseThrow(()-> new NoSuchElementException("There is no user with this email"));
+
         List<Transaction> transactionsList = transactionsRepository.findAllByUser(
                 authUser,
                 PageRequest.of(0,10, Sort.Direction.DESC, "date"));

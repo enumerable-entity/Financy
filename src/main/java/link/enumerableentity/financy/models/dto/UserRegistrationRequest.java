@@ -1,5 +1,8 @@
 package link.enumerableentity.financy.models.dto;
 
+import link.enumerableentity.financy.annotations.CheckEmailExist;
+import link.enumerableentity.financy.annotations.ValidEmail;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -7,7 +10,8 @@ import javax.validation.constraints.Size;
 public class UserRegistrationRequest {
 
     @NotBlank(message = "Email can`t be empty")
-    @Email(message = "Not valid email address")
+    @ValidEmail(message = "Not valid email address")
+    @CheckEmailExist(message = "User with this email already exist")
     private  String email;
 
     @Size(min = 8, max = 25, message = "Should be from 8 to 25 symbols")

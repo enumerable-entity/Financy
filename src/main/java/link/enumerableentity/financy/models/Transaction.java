@@ -1,6 +1,8 @@
 package link.enumerableentity.financy.models;
 
 import link.enumerableentity.financy.enums.Type;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,9 +31,10 @@ public class Transaction {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "category_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Category category;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
 
