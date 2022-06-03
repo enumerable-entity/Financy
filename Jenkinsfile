@@ -45,7 +45,7 @@
                     steps {
                         echo 'Delivering artifact to remote server...'
                         sshagent(['jenkinsAWSssh']) {
-                            sh 'scp ./target/*.jar ubuntu@enumerable-entity.link:/home/ubuntu/app/financy'
+                            sh 'scp -v ./target/*.jar ubuntu@enumerable-entity.link:/home/ubuntu/app/financy'
                         }
                     }
                 }
